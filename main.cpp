@@ -2,8 +2,7 @@
 #include <string>
 #include <fstream>
 #include <DirectXMath.h>
-#include <d3dcompiler.h>
-#pragma comment(lib, "d3dcompiler.lib")
+
 
 
 #include <DirectXTex.h>
@@ -18,7 +17,7 @@
 
 #include "Object3d.h"
 #include "Model.h"
-
+#include"SpriteCommon.h"
 using namespace DirectX;
 using namespace Microsoft::WRL;
 
@@ -36,7 +35,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #pragma endregion WindowsAPI初期化
 
 #pragma region DirectX初期化処理
-	HRESULT result;
 
 	DirectXCommon* dxCommon = nullptr;
 
@@ -52,6 +50,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #pragma endregion DirectX初期化処理
 
 #pragma region 描画初期化処理
+
+	SpriteCommon* spriteCommon = new SpriteCommon();
+	spriteCommon->initialize(dxCommon->GetDev(), winApp->window_width, winApp->window_height);
 
 	Model* modelPost = Model::LoadFromOBJ("posuto");
 	Model* modelChr = Model::LoadFromOBJ("chr_sword");
@@ -151,6 +152,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #pragma endregion WindowsAPI後始末
 	delete input;
 	delete winApp;
+	delete spriteCommon;
 	delete modelPost;
 	delete modelChr;
 	delete objChr;
