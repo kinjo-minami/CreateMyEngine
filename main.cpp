@@ -18,6 +18,7 @@
 #include "Object3d.h"
 #include "Model.h"
 #include"SpriteCommon.h"
+#include"Sprite.h"
 using namespace DirectX;
 using namespace Microsoft::WRL;
 
@@ -57,6 +58,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	spriteCommon->LoadTexture(0, L"Resources/texture.png");
 	spriteCommon->LoadTexture(1, L"Resources/house.png");
 
+	Sprite* sprite = new Sprite();
+	sprite->initialize(spriteCommon, 0);
 
 	Model* modelPost = Model::LoadFromOBJ("posuto");
 	Model* modelChr = Model::LoadFromOBJ("chr_sword");

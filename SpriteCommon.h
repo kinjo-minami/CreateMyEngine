@@ -32,6 +32,12 @@ public:
 
 	void LoadTexture( UINT texnumber, const wchar_t* filename);
 
+	ID3D12Resource* GetTexBuff(int texnumber);
+
+	ID3D12Device* GetDevice() { return Device; }
+
+	const DirectX::XMMATRIX& GetMatProjection() { return matProjection; }
+
 private:
 	void CreateGraphicsPipeline();
 

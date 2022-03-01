@@ -106,6 +106,14 @@ void SpriteCommon::LoadTexture(UINT texnumber, const wchar_t* filename)
     );
 }
 
+ID3D12Resource* SpriteCommon::GetTexBuff(int texnumber)
+{
+    assert(0 <= texnumber && texnumber < SpriteSRVCount);
+
+
+    return texBuff[texnumber].Get();
+}
+
 void SpriteCommon::CreateGraphicsPipeline()
 {
     HRESULT result;
