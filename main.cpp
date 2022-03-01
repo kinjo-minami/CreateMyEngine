@@ -52,7 +52,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #pragma region 描画初期化処理
 
 	SpriteCommon* spriteCommon = new SpriteCommon();
-	spriteCommon->initialize(dxCommon->GetDev(), winApp->window_width, winApp->window_height);
+	spriteCommon->initialize(dxCommon->GetDev(), dxCommon->GetCmdList(), winApp->window_width, winApp->window_height);
+	
+	spriteCommon->LoadTexture(0, L"Resources/texture.png");
+	spriteCommon->LoadTexture(1, L"Resources/house.png");
+
 
 	Model* modelPost = Model::LoadFromOBJ("posuto");
 	Model* modelChr = Model::LoadFromOBJ("chr_sword");
@@ -135,6 +139,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		objPost->Draw();
 		objChr->Draw();
 		Object3d::PostDraw();
+
+		spriteCommon->PreDraw();
 
 		// ４．描画コマンドここまで
 		dxCommon->PostDraw();

@@ -23,9 +23,14 @@ private:
 
 	ID3D12Device* Device = nullptr;
 
+	ID3D12GraphicsCommandList* CmdList = nullptr;
 public:
 
-	void initialize(ID3D12Device* device, int window_width, int window_height);
+	void initialize(ID3D12Device* device,ID3D12GraphicsCommandList* cmdList, int window_width, int window_height);
+
+	void PreDraw();
+
+	void LoadTexture( UINT texnumber, const wchar_t* filename);
 
 private:
 	void CreateGraphicsPipeline();
